@@ -15,5 +15,5 @@ Silahkan gunakan App key pusher pribadi dengan sign-up / daftar ke situs https:/
 
 - Kemudian pilih salah satunya misal yang ada tulisan developmentnya
 - Dan arahkan / klik menu App key
-- Maka App Key telah siap untuk ditanam ke dalam file trigger.php
+- Maka App Key telah siap untuk ditanam ke dalam file trigger.php dan index.php
 [![image-2023-05-21-113913247.png](https://i.postimg.cc/F15PcFFz/image-2023-05-21-113913247.png)](https://postimg.cc/y3jXCHZC)
