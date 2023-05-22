@@ -20,17 +20,19 @@
   #'YOUR_APP_CLUSTER';
   $app_cluster = array(
     'cluster' => 'ap1',
-    'useTLS' => false
+    'useTLS' => true
   );
 
   $pusher = new Pusher\Pusher($app_key, $app_secret, $app_id, $app_cluster);
 
-  print_r($_POST);
   $data =   ['datetime'		=> date("d-m-Y H:i:s"),
-			'from_channel' 	=> $_POST['from_channel'],
-			'from_event' 	=> $_POST['from_event'],
-			'message' 		=> $_POST['message']  ];
+			'From_channel' 	=> $_POST['from_channel'],
+			'From_event' 	=> $_POST['from_event'],
+			'Message' 		=> $_POST['message']
+			];
+			
   $channel_to				= $_POST['channel_to'];
   $event_to					= $_POST['event_to'];
   $pusher->trigger($channel_to, $event_to, $data);
+  print_r($data);
 ?>

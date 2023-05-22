@@ -2,7 +2,8 @@
 <head>
    <title>Pusher Chat HadiK</title>
    <meta name="viewport" content="width=device-width">
-   <script src="https://js.pusher.com/5.1/pusher.min.js"></script>
+   <link rel="icon" type="image/x-icon" href="favicon.png">
+   <script src="pusher.min.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
    <script>
       var channel_me, event_us, channel_to, event_to, message;
@@ -20,12 +21,12 @@
 	  
       // Enable pusher logging - don't include this in production
       // Pusher.logToConsole = true;
+	  
       var app_key = '743996c65a2c3b504344';
       var pusher = new Pusher(app_key, {
       cluster: 'ap1',
       forceTLS: false
       });
-      
       channel = pusher.subscribe(channel_me);
       channel.bind(event_us, function(data) {
 	  if (data.from_channel == document.getElementById("channel_me").value && data.from_event == document.getElementById("event_us").value)
@@ -34,7 +35,7 @@
 	  }
 	  else
 	  {
-        var html = ''; html +='<div style="background-color: #bfd2dc;"><label>Received :</label><br><small> [Time : '+data.datetime+' | From Channel : ' +data.from_channel+' Event : '+data.from_event+']</small><br><pre>'+data.message+'</pre></div>';
+        var html = ''; html +='<div style="background-color: #bfd2dc;"><label>Received :</label><br><small> [Time : '+data.datetime+' | From Channel : ' +data.From_channel+' Event : '+data.From_event+']</small><br><pre>'+data.Message+'</pre></div>';
         $('#received').append(html);
         console.log(data);
         //alert(JSON.stringify(data));
@@ -72,7 +73,7 @@
       Hello <code>please input about Me</code>
    </p>
    <form action="" method="post" id="formnya" >
-      <input type="text" name="from_channel" oninput="channel_mefunction()" id="channel_me" size="14px" placeholder="Channel Me">&nbsp;&nbsp;<input type="text" name="from_event" oninput="event_usfunction()" id="event_us" size="14px" placeholder="Event US"><br>
+      <input type="text" name="from_channel" oninput="channel_mefunction()" id="channel_me" size="14px" placeholder="Channel Me">&nbsp;&nbsp;<input type="text" name="from_event" onfocusout="event_usfunction()" id="event_us" size="14px" placeholder="Event US"><br>
       <hr>
       <label>To Channel:</label><br>
       <input type="text" name="channel_to" oninput="channel_tofunction()" id="channel_to"><br>
