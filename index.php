@@ -35,10 +35,9 @@
 	  }
 	  else
 	  {
-        var html = ''; html +='<div style="background-color: #bfd2dc;"><label>Received :</label><br><small> [Time : '+data.datetime+' | From Channel : ' +data.From_channel+' Event : '+data.From_event+']</small><br><pre>'+data.Message+'</pre></div>';
+        var html = ''; html +='<div style="background-color: #bfd2dc; width:50%; margin-right:51%; border-radius:5px; padding-left:0.5%;"><label>Received :</label><br><small> [Time : '+data.datetime+' | From Channel : ' +data.From_channel+' Event : '+data.From_event+']</small><br><pre>'+data.Message+'</pre></div>';
         $('#received').append(html);
         console.log(data);
-        //alert(JSON.stringify(data));
 	  }
 
       });
@@ -101,7 +100,7 @@
               success: function(data)
               { 
 				console.log('success!');
-				var html = ''; html +='<div style="background-color: #dcbfbf;"><label>Sent :</label><br><small> [Time : '+dateTime+' | To Channel : ' +document.getElementById("channel_to").value+' Event : '+document.getElementById("event_to").value+']</small><br><pre>'+document.getElementById("message").value+'</pre></div>'; document.getElementById("message").value = "";
+				var html = ''; html +='<div style="background-color: #dcbfbf; width:50%; margin-left:51%; border-radius:5px; padding-left:0.5%;"><label>Sent :</label><br><small> [Time : '+dateTime+' | To Channel : ' +document.getElementById("channel_to").value+' Event : '+document.getElementById("event_to").value+']</small><br><pre>'+document.getElementById("message").value+'</pre></div>'; document.getElementById("message").value = "";
 				$('#received').append(html);
 				
 			  },
