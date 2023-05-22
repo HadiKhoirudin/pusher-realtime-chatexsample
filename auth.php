@@ -35,4 +35,3 @@
   $pusher = new Pusher\Pusher($app_key, $app_secret, $app_id, $app_cluster);
   $auth = $pusher->socket_auth($channel_name, $socket_id);
   echo $auth;
-# echo '{ "auth": "1afff399e76480e04bfe:0c40bb0f16357b2a2cb85f2fb631ea75ff0df0a7c760b36b76e5839c83d7354as", "user_data": "USER_DATA" }';

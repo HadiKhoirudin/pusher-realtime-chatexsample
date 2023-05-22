@@ -31,8 +31,8 @@
 			'Message' 		=> $_POST['message']
 			];
 			
-  $channel_to				= $_POST['channel_to'];
+  $channel					= $_POST['from_channel'];
   $event_to					= $_POST['event_to'];
-  $pusher->trigger($channel_to, $event_to, $data);
+  $pusher->trigger($channel, $event_to, $data);
   print_r($data);
 ?>

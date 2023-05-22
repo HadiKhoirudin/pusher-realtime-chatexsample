@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <head>
-   <title>Pusher Chat HadiK</title>
+   <title>Pusher Chat HadiKIT</title>
    <meta name="viewport" content="width=device-width">
    <link rel="icon" type="image/x-icon" href="favicon.png">
    <script src="pusher.min.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
    <script>
-      var channel_me, event_us, channel_to, event_to, message;
+      var channel_me, event_me, channel_to, event_to, message;
       function channel_mefunction ()
       {
       channel_me = document.getElementById("channel_me").value;
       console.log('this channel me :'+channel_me);
       }
-      function event_usfunction ()
+      function event_mefunction ()
       {
-      event_us = document.getElementById("event_us").value;
-      console.log('this event me :'+event_us);
-      $("#event_to").val(event_us);
-      event_to = event_us;
+      event_me = document.getElementById("event_me").value;
+      console.log('this event me :'+event_me);
+      $("#event_to").val(event_me);
+      event_to = event_me;
 	  
       // Enable pusher logging - don't include this in production
       // Pusher.logToConsole = true;
@@ -28,14 +28,14 @@
       forceTLS: false
       });
       channel = pusher.subscribe(channel_me);
-      channel.bind(event_us, function(data) {
-	  if (data.from_channel == document.getElementById("channel_me").value && data.from_event == document.getElementById("event_us").value)
+      channel.bind(event_me, function(data) {
+	  if (data.from_channel == document.getElementById("channel_me").value && data.from_event == document.getElementById("event_me").value)
 	  {
 		  console.log("duplicate disabled");
 	  }
 	  else
 	  {
-        var html = ''; html +='<div style="background-color: #bfd2dc; width:50%; margin-right:51%; border-radius:5px; padding-left:0.5%;"><label>Received :</label><br><small> [Time : '+data.datetime+' | From Channel : ' +data.From_channel+' Event : '+data.From_event+']</small><br><pre>'+data.Message+'</pre></div>';
+	  var html = ''; html +='<div style="background-color: #bfd2dc; width:50%; margin-right:51%; border-radius:5px; padding-left:0.5%;"><label>Received :</label><small> [Time : '+data.datetime+' ] <br>From Channel : ' +data.From_channel+' Event : '+data.From_event+'</small><br><pre>'+data.Message+'</pre></div>';
         $('#received').append(html);
         console.log(data);
 	  }
@@ -43,12 +43,6 @@
       });
       
       }
-      function channel_tofunction ()
-      {
-      channel_to = document.getElementById("channel_to").value;
-      console.log('this to channel :'+channel_to);
-      }
-      
       function event_tofunction ()
       {
       event_to = document.getElementById("event_to").value;
@@ -69,22 +63,28 @@
       <h1>Chat Messages</h1>
    </center>
    <p style="text-align:center;">
-      Hello <code>please input about Me</code>
+      Hello <code>please input about Channel Me To and Messages.</code>
    </p>
    <form action="" method="post" id="formnya" >
-      <input type="text" name="from_channel" oninput="channel_mefunction()" id="channel_me" size="14px" placeholder="Channel Me">&nbsp;&nbsp;<input type="text" name="from_event" onfocusout="event_usfunction()" id="event_us" size="14px" placeholder="Event US"><br>
-      <hr>
-      <label>To Channel:</label><br>
-      <input type="text" name="channel_to" oninput="channel_tofunction()" id="channel_to"><br>
-      <label>To Event :</label><br>
-      <input type="text" name="event_to" oninput="event_tofunction()" id="event_to"><br>
-      <label>Messages :</label><br>
-      <textarea rows="4" cols="40" name="message" oninput="messagefunction()" id="message"></textarea>
-      <br>
-      <button type="button" onclick="send()"> Send </button>
+      <input type="text" name="from_channel" oninput="channel_mefunction()" id="channel_me" size="14px" placeholder="Channel">&nbsp;&nbsp;
+	  <input type="text" name="from_event" onfocusout="event_mefunction()" id="event_me" size="14px" placeholder="Event From Me">&nbsp;&nbsp;
+      <input type="text" name="event_to" oninput="event_tofunction()" size="14px" placeholder="Event Dear To" id="event_to">
       <hr>
       <div id="received"></div>
+	  <br>
+      <hr>
+      <label>Write Messages :</label><br>
+      <textarea rows="4" cols="40" name="message" oninput="messagefunction()" id="message" style="width:100%"></textarea>
+      <br>
+      <button type="button" onclick="send()" style="position: absolute; right:0%; width: 120px;"> Send </button>
    </form>
+   <br>
+   <div class="copyright">
+   <small>
+		© <?php echo date('Y'); ?> made with <i class="tim-icons icon-heart-2"></i> by &#x1f49d;
+		<a href="https://www.youtube.com/c/hadikit?sub_confirmation=1" target="_blank">Hadi Khoirudin, S.Kom - @HadiKIT</a> for a better web.
+	</small>
+   </div>
 </body>
 <script>
    function send(){
@@ -100,7 +100,7 @@
               success: function(data)
               { 
 				console.log('success!');
-				var html = ''; html +='<div style="background-color: #dcbfbf; width:50%; margin-left:51%; border-radius:5px; padding-left:0.5%;"><label>Sent :</label><br><small> [Time : '+dateTime+' | To Channel : ' +document.getElementById("channel_to").value+' Event : '+document.getElementById("event_to").value+']</small><br><pre>'+document.getElementById("message").value+'</pre></div>'; document.getElementById("message").value = "";
+				var html = ''; html +='<div style="background-color: #dcbfbf; width:50%; margin-left:51%; border-radius:5px; padding-left:0.5%;"><label>Sent :</label><small> [Time : '+dateTime+' ]<br> To Channel : ' +document.getElementById("channel_me").value+' Event : '+document.getElementById("event_to").value+'</small><br><pre>'+document.getElementById("message").value+'</pre></div>'; document.getElementById("message").value = "";
 				$('#received').append(html);
 				
 			  },
