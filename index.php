@@ -15,45 +15,58 @@
       function event_mefunction ()
       {
       event_me = document.getElementById("event_me").value;
-      console.log('this event me :'+event_me);
-      $("#event_to").val(event_me);
-      event_to = event_me;
 	  
-      // Enable pusher logging - don't include this in production
-      // Pusher.logToConsole = true;
-	  
-      var app_key = '743996c65a2c3b504344';
-      var pusher = new Pusher(app_key, {
-      cluster: 'ap1',
-      forceTLS: false
-      });
-      channel = pusher.subscribe(channel_me);
-      channel.bind(event_me, function(data) {
-	  if (data.from_channel == document.getElementById("channel_me").value && data.from_event == document.getElementById("event_me").value)
-	  {
-		  console.log("duplicate disabled");
-	  }
-	  else
-	  {
-	  var html = ''; html +='<div style="background-color: #bfd2dc; width:50%; margin-right:51%; border-radius:5px; padding-left:0.5%;"><label>Received :</label><small> [Time : '+data.datetime+' ] <br>From Channel : ' +data.From_channel+' Event : '+data.From_event+'</small><br><pre>'+data.Message+'</pre></div>';
-        $('#received').append(html);
-        console.log(data);
+	  if(event_me.length > 7){
+		  if(!event_me.includes('client-')){
+				var fix = event_me;
+					event_me = 'client-' + fix;
+					document.getElementById("event_me").value = 'client-' + fix;
+			}
+				console.log('this event me :'+event_me);
+				$("#event_to").val(event_me);
+				event_to = event_me;
+
+				// Enable pusher logging - don't include this in production client
+				// Pusher.logToConsole = true;
+
+				var app_key = '743996c65a2c3b504344';
+				var pusher = new Pusher(app_key, {
+				cluster: 'ap1',
+				forceTLS: false
+				});
+				channel = pusher.subscribe(channel_me);
+				channel.bind(event_me, function(data) {
+				if (data.from_channel == document.getElementById("channel_me").value && data.from_event == document.getElementById("event_me").value)
+				{
+					console.log("duplicate disabled");
+				}
+				else
+				{
+					var html = ''; html +='<div style="background-color: #bfd2dc; width:50%; margin-right:51%; border-radius:5px; padding-left:0.5%;"><label>Received :</label><small> [Time : '+data.datetime+' ] <br>From Channel : ' +data.From_channel+' Event : '+data.From_event+'</small><br><pre>'+data.Message+'</pre></div>';
+					$('#received').append(html);
+					console.log(data);
+				}
+				});
+		}
 	  }
 
-      });
-      
-      }
       function event_tofunction ()
       {
       event_to = document.getElementById("event_to").value;
-      console.log('this to event :'+event_to);
+		  if(event_to.length > 7){
+			  if(!event_to.includes('client-')){
+					var fix = event_to;
+						event_to = 'client-' + fix;
+						document.getElementById("event_to").value = 'client-' + fix;
+				}
+			  console.log('this to event :'+event_to);
+		  }
       }
+	  
       function messagefunction ()
       {
-      
-      message = document.getElementById("message").value;
-      console.log('this message :'+message);
-      
+		message = document.getElementById("message").value;
+		console.log('this message :'+message);
       }
       
    </script>
@@ -81,7 +94,7 @@
    <br>
    <div class="copyright">
    <small>
-		© <?php echo date('Y'); ?> made with <i class="tim-icons icon-heart-2"></i> by &#x1f49d;
+		© <?php echo date('Y'); ?> made with &#x1f49d; by 
 		<a href="https://www.youtube.com/c/hadikit?sub_confirmation=1" target="_blank">Hadi Khoirudin, S.Kom - @HadiKIT</a> for a better web.
 	</small>
    </div>
