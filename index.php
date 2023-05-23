@@ -16,7 +16,7 @@
       {
       event_me = document.getElementById("event_me").value;
 	  
-	  if(event_me.length > 7){
+	  if(event_me.length > 1){
 		  if(!event_me.includes('client-')){
 				var fix = event_me;
 					event_me = 'client-' + fix;
@@ -53,7 +53,7 @@
       function event_tofunction ()
       {
       event_to = document.getElementById("event_to").value;
-		  if(event_to.length > 7){
+		  if(event_to.length > 1){
 			  if(!event_to.includes('client-')){
 					var fix = event_to;
 						event_to = 'client-' + fix;
@@ -81,7 +81,7 @@
    <form action="" method="post" id="formnya" >
       <input type="text" name="from_channel" oninput="channel_mefunction()" id="channel_me" size="14px" placeholder="Channel">&nbsp;&nbsp;
 	  <input type="text" name="from_event" onfocusout="event_mefunction()" id="event_me" size="14px" placeholder="Event From Me">&nbsp;&nbsp;
-      <input type="text" name="event_to" oninput="event_tofunction()" size="14px" placeholder="Event Dear To" id="event_to">
+      <input type="text" name="event_to" onfocusout="event_tofunction()" size="14px" placeholder="Event Dear To" id="event_to">
       <hr>
       <div id="received"></div>
 	  <br>
@@ -113,7 +113,7 @@
               success: function(data)
               { 
 				console.log('success!');
-				var html = ''; html +='<div style="background-color: #dcbfbf; width:50%; margin-left:51%; border-radius:5px; padding-left:0.5%;"><label>Sent :</label><small> [Time : '+dateTime+' ]<br> To Channel : ' +document.getElementById("channel_me").value+' Event : '+document.getElementById("event_to").value+'</small><br><pre>'+document.getElementById("message").value+'</pre></div>'; document.getElementById("message").value = "";
+				var html = ''; html +='<div style="background-color: #cbdcbf; width:50%; margin-left:51%; border-radius:5px; padding-left:0.5%;"><label>Sent :</label><small> [Time : '+dateTime+' ]<br> To Channel : ' +document.getElementById("channel_me").value+' Event : '+document.getElementById("event_to").value+'</small><br><pre>'+document.getElementById("message").value+'</pre></div>'; document.getElementById("message").value = "";
 				$('#received').append(html);
 				
 			  },

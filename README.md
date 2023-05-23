@@ -1,6 +1,6 @@
 # pusher-realtime-chatexsample
 Contoh penggunaan pusher untuk dapat diimplemetasikan sebagai penyajian data / perubahan secara realtime.
-[![image-2023-05-23-062306605.png](https://i.postimg.cc/rsbr6sky/image-2023-05-23-062306605.png)](https://postimg.cc/xNvCM08B)
+[![image-2023-05-23-085445286.png](https://i.postimg.cc/ncy4xWFL/image-2023-05-23-085445286.png)](https://postimg.cc/56mYqnFc)
 
 Video penjelasannya : https://youtu.be/vz0xr5zTVK8
 
